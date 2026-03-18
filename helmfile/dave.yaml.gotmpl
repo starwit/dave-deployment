@@ -140,6 +140,10 @@ releases:
                 issuer_uri: http{{- if .Values.tls }}s{{- end }}://{{ .Values.auth.keycloak_host }}/auth/realms/{{ .Values.auth.realmname }}
             resource:
               user_info_uri: http{{- if .Values.tls }}s{{- end }}://{{ .Values.auth.keycloak_host }}/auth/realms/{{ .Values.auth.realmname }}/protocol/openid-connect/userinfo
+        dave:
+          reports:
+            logo_icon: https://www.wolfsburg.de/-/media/wolfsburg/images/alle-bilder/logos/stadt_wob_okt_2025/wolfsburg-version-a-weiss-schwarz-k.webp
+            logo_subtitle: "<br/>Wolfsburg<br/><b>Straßenbau und Projektkoordination (07)</b>"
         extraEnvVars:
           TZ: "Europe/Berlin"
           SPRING_FLYWAY_LOCATIONS: classpath:db/migration, classpath:data2
@@ -171,12 +175,12 @@ releases:
     installed: {{ .Values.components.dave_frontend }}
     namespace: {{ .Values.namespace }}
     chart: starwitorg/dave-frontend-chart
-    version: 5.1.1
+    version: 5.1.2
     needs: 
       - backend
     values:
       - image:
-          tag: "5.1.1"
+          tag: "5.1.2"
         app:
           spring:
             profile:
@@ -339,11 +343,7 @@ releases:
                     client_secret: {{ .Values.auth.api_client_secret  }}
                 provider:
                   daveprovider:
-                    token_uri: http{{- if .Values.tls }}s{{- end }}://{{ .Values.auth.keycloak_host }}/auth/realms/{{ .Values.auth.realmname }}/protocol/openid-connect/token
-        dave:
-          reports:
-            logo_icon: https://www.wolfsburg.de/-/media/wolfsburg/images/alle-bilder/logos/stadt_wob_okt_2025/wolfsburg-version-a-weiss-schwarz-k.webp
-            logo_subtitle: "<br/>Wolfsburg<br/><b>Straßenbau und Projektkoordination (07)</b>"        
+                    token_uri: http{{- if .Values.tls }}s{{- end }}://{{ .Values.auth.keycloak_host }}/auth/realms/{{ .Values.auth.realmname }}/protocol/openid-connect/token        
         analytics_db:
           url: {{ .Values.analytics.url }}
           username: {{ .Values.analytics.username }}
