@@ -47,7 +47,7 @@ services:
 
   dave-backend:
     container_name: dave-backend
-    image: starwitorg/dave-backend:5.1.0
+    image: starwitorg/dave-backend:5.1.2
     environment:
       DB_SCHEMA: public
       APP_SCAN_PACKAGES: org.springframework.data.jpa.convert.threeten,de.muenchen.dave,de.muenchen.relationalimpl
@@ -135,7 +135,7 @@ services:
 
   dave-adminportal:
     container_name: dave-adminportal
-    image: starwitorg/dave-adminportal:5.1.0
+    image: starwitorg/dave-adminportal:5.1.1
     environment:
       SPRING_PROFILES_ACTIVE: local, no-security
       SPRING_CLOUD_GATEWAY_ROUTES_0_ID: backend
