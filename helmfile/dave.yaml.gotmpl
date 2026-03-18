@@ -340,6 +340,10 @@ releases:
                 provider:
                   daveprovider:
                     token_uri: http{{- if .Values.tls }}s{{- end }}://{{ .Values.auth.keycloak_host }}/auth/realms/{{ .Values.auth.realmname }}/protocol/openid-connect/token
+        dave:
+          reports:
+            logo_icon: https://www.wolfsburg.de/-/media/wolfsburg/images/alle-bilder/logos/stadt_wob_okt_2025/wolfsburg-version-a-weiss-schwarz-k.webp
+            logo_subtitle: "<br/>Wolfsburg<br/><b>Straßenbau und Projektkoordination (07)</b>"        
         analytics_db:
           url: {{ .Values.analytics.url }}
           username: {{ .Values.analytics.username }}
