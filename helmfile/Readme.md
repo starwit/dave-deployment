@@ -15,7 +15,6 @@ helmfile -e remote -f dave.yaml.gotmpl apply
 ```
 
 ## Deployment Overview
-TODO
 
 ## Component Breakdown
 The DAVe application consists of multiple components. Each component has its own Helm chart. The main components are:
