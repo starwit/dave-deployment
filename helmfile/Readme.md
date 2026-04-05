@@ -15,6 +15,11 @@ helmfile -e remote -f dave.yaml.gotmpl apply
 ```
 
 ## Deployment Overview
+When deploying DAVe to a Kubernetes cluster the following components are installed by the Helmfile in this repository.
+
+![](../img/HelmfileDeployment.drawio.svg)
+
+By default the three components with user interface (Frontend, SelfService, AdminPortal) will be reachable under seperated subdomains. Based on the hostname provided in env file (see [env section](#using-helmfile)) the subdomains are added to base domain.
 
 ## Component Breakdown
 The DAVe application consists of multiple components. Each component has its own Helm chart. The main components are:
