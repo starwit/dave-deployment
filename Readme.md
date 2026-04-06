@@ -9,4 +9,6 @@ Each individual DAVe component has its own Helm chart. In order to deploy them t
 The `docker-compose` directory contains a `docker-compose.yaml` file that can be used to deploy the DAVe application using Docker Compose. This file defines the services, networks, and volumes needed to run the application. It is intended for local development environments and should __NOT__ be used in productive scenarios. Consult [readme](docker-compose/Readme.md) on how to use Docker Compose file.
 
 # License 
-Everything in this repo is pulblished under [MIT License](LICENSE)
+Everything in this repo is pulblished under [MIT License](LICENSE). For all DAVe related components refer to their respective licenses [here](https://github.com/it-at-m/dave-backend).
+
+![](img/dave_logo.png)
