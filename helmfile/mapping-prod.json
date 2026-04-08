@@ -1,0 +1,44 @@
+[
+    {
+    "observationAreaId": "8",
+    "daveCountingId": "327fb525-6b05-4526-af4a-dbc0220b38d8",
+    "intersectionMapping": {
+        "1" : "",
+        "dave-rothenfelder-west" : "2",
+        "dave-rothenfelder-sued" : "3",
+        "dave-rothenfelder-ost" : "4",
+        "5" : "",
+        "6" : "",
+        "7" : "",
+        "8" : ""
+    }
+    },
+    {
+    "observationAreaId": "10",
+    "daveCountingId": "6e97c001-7982-459f-a7f0-a546e8c7b30e",
+    "intersectionMapping": {
+        "1" : "",
+        "dave-dieselstrasse-west" : "2",
+        "dave-dieselstrasse-sued" : "3",
+        "dave-dieselstrasse-ost" : "4",
+        "5" : "",
+        "6" : "",
+        "7" : "",
+        "8" : ""
+    }
+    },
+    {
+    "observationAreaId": "14",
+    "daveCountingId": "6e97c001-7982-459f-a7f0-a546e8c7b30e",
+    "intersectionMapping": {
+        "dave-berlinerring-nord" : "1",
+        "dave-berlinerring-west" : "2",
+        "dave-berlinerring-sued" : "3",
+        "4" : "",
+        "5" : "",
+        "6" : "",
+        "7" : "",
+        "8" : ""
+    }
+    }
+]
