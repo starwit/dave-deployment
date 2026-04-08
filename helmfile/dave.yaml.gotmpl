@@ -110,10 +110,14 @@ releases:
     installed: {{ .Values.components.landing_page }}
     namespace: {{ .Values.namespace }}
     chart: starwitorg/httpd-git-chart
-    version: 2.4.66
+    version: 1.0.2
     values:
-      - repoUrl: https://github.com/starwit/dave-landing.git
+      - image:
+          tag: "1.0.2"
+        repoUrl: https://github.com/starwit/dave-landing.git
         accessToken: {{ .Values.dave.github_token }}
+        baseUrl: {{ .Values.hostname }}
+        placeholder: "DOMAIN"
         ingress:
           enabled: true
           className: "traefik"
