@@ -4,9 +4,9 @@
     "daveCountingId": "5f0b8d05-7653-4a80-9ad7-c99af6079f1e",
     "intersectionMapping": {
         "1" : "",
-        "dave-rothenfelder-west" : "2",
+        "dave-rothenfelder-west" : "4",
         "dave-rothenfelder-sued" : "3",
-        "dave-rothenfelder-ost" : "4",
+        "dave-rothenfelder-ost" : "2",
         "5" : "",
         "6" : "",
         "7" : "",
@@ -18,9 +18,9 @@
     "daveCountingId": "9e73709d-2553-42e4-9754-f8bc41eabf5d",
     "intersectionMapping": {
         "1" : "",
-        "dave-dieselstrasse-west" : "2",
+        "dave-dieselstrasse-west" : "4",
         "dave-dieselstrasse-sued" : "3",
-        "dave-dieselstrasse-ost" : "4",
+        "dave-dieselstrasse-ost" : "2",
         "5" : "",
         "6" : "",
         "7" : "",
