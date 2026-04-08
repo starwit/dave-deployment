@@ -37,7 +37,7 @@ environments:
           username: {{ requiredEnv "ANALYTICS_PASSWORD" }}
           password: {{ requiredEnv "ANALYTICS_USERNAME" }}
 
-  remote:
+  staging:
     values:
       - namespace: dave
         hostname: {{ requiredEnv "HOSTNAME" }}
@@ -64,6 +64,36 @@ environments:
           github_token: {{ requiredEnv "GITHUB_TOKEN" }}
         analytics:
           url: jdbc:postgresql://100.112.168.104:30001/analytics
+          username: {{ requiredEnv "ANALYTICS_PASSWORD" }}
+          password: {{ requiredEnv "ANALYTICS_USERNAME" }}
+
+  prod:
+    values:
+      - namespace: dave
+        hostname: {{ requiredEnv "HOSTNAME" }}
+        tls: true
+        profiles: prod
+        components:
+          landing_page: true
+          dave_backend: true
+          dave_database: true
+          dave_frontend: true
+          dave_adminportal: true
+          dave_selfservice: true
+          dave_adapter: false
+        auth:
+          enabled: true
+          keycloak_host: auth-ng.data-wolfsburg.de
+          realmname: {{ requiredEnv "REALM_NAME" }}
+          clientId: dave
+          clientSecret: {{ requiredEnv "CLIENT_SECRET" }}
+          api_client_id: {{ requiredEnv "API_CLIENT_ID" }}
+          api_client_secret: {{ requiredEnv "API_CLIENT_SECRET" }}
+        dave:
+          dave_db_password: {{ requiredEnv "DAVE_DB_PW" }}
+          github_token: {{ requiredEnv "GITHUB_TOKEN" }}
+        analytics:
+          url: jdbc:postgresql://10.0.1.1:30001/analytics
           username: {{ requiredEnv "ANALYTICS_PASSWORD" }}
           password: {{ requiredEnv "ANALYTICS_USERNAME" }}
 
@@ -353,7 +383,7 @@ releases:
         #    value: DEBUG
 
   - name: dave-adapter-carmel
-    installed: true
+    installed: false
     namespace: {{ .Values.namespace }}
     chart: starwitorg/dave-adapter-chart
     version: 5.0.5
