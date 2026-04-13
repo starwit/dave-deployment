@@ -13,6 +13,13 @@ environments:
         hostname: cluster.local
         tls: false
         profiles: local,no-security
+        component_versions:
+          landing_page: 1.0.3
+          backend: 5.1.2
+          frontend: 5.1.2
+          adminportal: 5.1.1
+          selfservice: 5.0.0
+          adapter: 5.0.5
         components:
           landing_page: true
           dave_backend: true
@@ -23,6 +30,7 @@ environments:
           dave_adapter: true
         auth:
           enabled: false
+          keycloak_namespace: auth
           keycloak_host: auth.cluster.local
           realmname: realmname
           clientId: testClientId
@@ -44,6 +52,13 @@ environments:
         hostname: {{ requiredEnv "HOSTNAME" }}
         tls: true
         profiles: prod
+        component_versions:
+          landing_page: 1.0.3
+          backend: 5.2.0
+          frontend: 5.2.0
+          adminportal: 5.2.0
+          selfservice: 5.2.0
+          adapter: 5.2.0
         components:
           landing_page: true
           dave_backend: true
@@ -54,6 +69,7 @@ environments:
           dave_adapter: true
         auth:
           enabled: true
+          keycloak_namespace: auth-ng
           keycloak_host: auth-ng.staging.data-wolfsburg.de
           realmname: {{ requiredEnv "REALM_NAME" }}
           clientId: dave
@@ -75,6 +91,13 @@ environments:
         hostname: {{ requiredEnv "HOSTNAME" }}
         tls: true
         profiles: prod
+        component_versions:
+          landing_page: 1.0.3
+          backend: 5.2.0
+          frontend: 5.2.0
+          adminportal: 5.2.0
+          selfservice: 5.2.0
+          adapter: 5.2.0
         components:
           landing_page: true
           dave_backend: true
@@ -86,6 +109,7 @@ environments:
         auth:
           enabled: true
           keycloak_host: auth-ng.data-wolfsburg.de
+          keycloak_namespace: auth
           realmname: {{ requiredEnv "REALM_NAME" }}
           clientId: dave
           clientSecret: {{ requiredEnv "CLIENT_SECRET" }}
@@ -113,10 +137,10 @@ releases:
     installed: {{ .Values.components.landing_page }}
     namespace: {{ .Values.namespace }}
     chart: starwitorg/httpd-git-chart
-    version: 1.0.3
+    version: {{ .Values.component_versions.landing_page }}
     values:
       - image:
-          tag: "1.0.3"
+          tag: "{{ .Values.component_versions.landing_page }}"
         repoUrl: https://github.com/starwit/dave-landing.git
         accessToken: {{ .Values.dave.github_token }}
         baseUrl: {{ .Values.hostname }}
@@ -140,13 +164,13 @@ releases:
     installed: {{ .Values.components.dave_backend }}
     namespace: {{ .Values.namespace }}
     chart: starwitorg/dave-backend-chart
-    version: "5.1.2"
+    version: {{ .Values.component_versions.backend }}
     needs: 
       - config-data
       - dave-db
     values:
       - image:
-          tag: "5.1.2"
+          tag: "{{ .Values.component_versions.backend }}"
         app:
           db_schema: public
           spring:
@@ -181,6 +205,13 @@ releases:
           reports:
             logo_icon: https://www.wolfsburg.de/-/media/wolfsburg/images/alle-bilder/logos/stadt_wob_okt_2025/wolfsburg-version-a-weiss-schwarz-k.webp
             logo_subtitle: "<br/>Wolfsburg<br/><b>Straßenbau und Projektkoordination (07)</b>"
+        resources:
+          limits:
+            cpu: 1500m
+            memory: 1512Mi
+          requests:
+            cpu: 50m
+            memory: 1512Mi
         extraEnvVars:
           TZ: "Europe/Berlin"
           SPRING_FLYWAY_LOCATIONS: classpath:db/migration, classpath:data2
@@ -212,18 +243,18 @@ releases:
     installed: {{ .Values.components.dave_frontend }}
     namespace: {{ .Values.namespace }}
     chart: starwitorg/dave-frontend-chart
-    version: 5.1.2
+    version: {{ .Values.component_versions.frontend }}
     needs: 
       - backend
     values:
       - image:
-          tag: "5.1.2"
+          tag: "{{ .Values.component_versions.frontend }}"
         app:
           spring:
             profile:
               active: {{ .Values.profiles }}
             routes:
-              SPRING_CLOUD_GATEWAY_ROUTES_0_URI: http://keycloak-keycloakx-http.auth/
+              SPRING_CLOUD_GATEWAY_ROUTES_0_URI: http://keycloak-keycloakx-http.{{ .Values.auth.keycloak_namespace }}/
               SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0: RewritePath=/api/sso/userinfo, /auth/realms/{{ .Values.auth.realmname }}/protocol/openid-connect/userinfo
           auth:
             enabled: {{ .Values.auth.enabled }}
@@ -255,18 +286,18 @@ releases:
     installed: {{ .Values.components.dave_adminportal }}
     namespace: {{ .Values.namespace }}
     chart: starwitorg/dave-admin-portal-chart
-    version: 5.1.1
+    version: {{ .Values.component_versions.adminportal }}
     needs: 
       - backend
     values:
       - image:
-          tag: "5.1.1"
+          tag: "{{ .Values.component_versions.adminportal }}"
         app:
           spring:
             profile:
               active: {{ .Values.profiles }}
             routes:
-              SPRING_CLOUD_GATEWAY_ROUTES_0_URI: http://keycloak-keycloakx-http.auth/
+              SPRING_CLOUD_GATEWAY_ROUTES_0_URI: http://keycloak-keycloakx-http.{{ .Values.auth.keycloak_namespace }}/
               SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0: RewritePath=/api/sso/userinfo, /auth/realms/{{ .Values.auth.realmname }}/protocol/openid-connect/userinfo
           auth:
             enabled: true
@@ -298,18 +329,18 @@ releases:
     installed: {{ .Values.components.dave_selfservice }}
     namespace: {{ .Values.namespace }}
     chart: starwitorg/dave-selfservice-chart
-    version: 5.0.0
+    version: {{ .Values.component_versions.selfservice }}
     needs: 
       - backend
     values:
       - image:
-          tag: "5.0.0"
+          tag: "{{ .Values.component_versions.selfservice }}"
         app:
           spring:
             profile:
               active: {{ .Values.profiles }}
             routes:
-              SPRING_CLOUD_GATEWAY_ROUTES_0_URI: http://keycloak-keycloakx-http.auth/
+              SPRING_CLOUD_GATEWAY_ROUTES_0_URI: http://keycloak-keycloakx-http.{{ .Values.auth.keycloak_namespace }}/
               SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0: RewritePath=/api/sso/userinfo, /auth/realms/{{ .Values.auth.realmname }}/protocol/openid-connect/userinfo
           auth:
             enabled: {{ .Values.auth.enabled }}
@@ -341,12 +372,12 @@ releases:
     installed: {{ .Values.components.dave_adapter }}
     namespace: {{ .Values.namespace }}
     chart: starwitorg/dave-adapter-chart
-    version: 5.0.5
+    version: {{ .Values.component_versions.adapter }}
     needs:
       - backend
     values:
       - image:
-          tag: "5.0.5"
+          tag: "{{ .Values.component_versions.adapter }}"
         app:
           dave_url: http://backend:8080/detector/save-latest-detections
           mapping:
@@ -378,12 +409,12 @@ releases:
     installed: false
     namespace: {{ .Values.namespace }}
     chart: starwitorg/dave-adapter-chart
-    version: 5.0.5
+    version: {{ .Values.component_versions.adapter }}
     needs:
       - backend
     values:
       - image:
-          tag: "5.0.5"
+          tag: "{{ .Values.component_versions.adapter }}"
         app:
           dave_url: http://backend:8080/detector/save-latest-detections
           mapping:

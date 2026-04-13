@@ -1,30 +1,16 @@
 [
-    {
-    "observationAreaId": "14",
-    "daveCountingId": "327fb525-6b05-4526-af4a-dbc0220b38d8",
+  {
+    "observationAreaId": "9",
+    "daveCountingId": "339f992e-0925-4f6d-9e75-099bc520ad2c",
     "intersectionMapping": {
-        "rangeline-citycenter-nb" : "1",
-        "rangeline-citycenter-wb" : "2",
-        "rangeline-citycenter-sb" : "3",
-        "rangeline-citycenter-eb" : "4",
+        "dave-meckauer-nordost" : "1",
+        "dave-meckauer-nordwest" : "2",
+        "dave-meckauer-sued" : "3",
+        "dave-meckauer-ost" : "4",
         "5" : "",
         "6" : "",
         "7" : "",
         "8" : ""
     }
-    },
-    {
-    "observationAreaId": "8",
-    "daveCountingId": "6e97c001-7982-459f-a7f0-a546e8c7b30e",
-    "intersectionMapping": {
-        "northbound" : "1",
-        "westbound" : "2",
-        "southbound" : "3",
-        "eastbound" : "4",
-        "5" : "",
-        "6" : "",
-        "7" : "",
-        "8" : ""
-    }
-    }
+  }
 ]
