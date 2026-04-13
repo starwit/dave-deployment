@@ -1,44 +1,58 @@
 [
     {
-    "observationAreaId": "8",
-    "daveCountingId": "5f0b8d05-7653-4a80-9ad7-c99af6079f1e",
-    "intersectionMapping": {
-        "1" : "",
-        "dave-rothenfelder-west" : "4",
-        "dave-rothenfelder-sued" : "3",
-        "dave-rothenfelder-ost" : "2",
-        "5" : "",
-        "6" : "",
-        "7" : "",
-        "8" : ""
-    }
+        "observationAreaId": "8",
+        "daveCountingId": "5f0b8d05-7653-4a80-9ad7-c99af6079f1e",
+        "intersectionMapping": {
+            "1": "",
+            "dave-rothenfelder-west": "4",
+            "dave-rothenfelder-sued": "3",
+            "dave-rothenfelder-ost": "2",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": ""
+        }
     },
     {
-    "observationAreaId": "10",
-    "daveCountingId": "9e73709d-2553-42e4-9754-f8bc41eabf5d",
-    "intersectionMapping": {
-        "1" : "",
-        "dave-dieselstrasse-west" : "4",
-        "dave-dieselstrasse-sued" : "3",
-        "dave-dieselstrasse-ost" : "2",
-        "5" : "",
-        "6" : "",
-        "7" : "",
-        "8" : ""
-    }
+        "observationAreaId": "10",
+        "daveCountingId": "9e73709d-2553-42e4-9754-f8bc41eabf5d",
+        "intersectionMapping": {
+            "1": "",
+            "dave-dieselstrasse-west": "4",
+            "dave-dieselstrasse-sued": "3",
+            "dave-dieselstrasse-ost": "2",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": ""
+        }
     },
     {
-    "observationAreaId": "14",
-    "daveCountingId": "f55a7be7-d7d1-4bf9-b041-baa7f231939e",
-    "intersectionMapping": {
-        "dave-berlinerring-nord" : "1",
-        "2" : "",
-        "dave-berlinerring-sued" : "3",
-        "dave-berlinerring-west" : "4",
-        "5" : "",
-        "6" : "",
-        "7" : "",
-        "8" : ""
-    }
+        "observationAreaId": "14",
+        "daveCountingId": "f55a7be7-d7d1-4bf9-b041-baa7f231939e",
+        "intersectionMapping": {
+            "dave-berlinerring-nord": "1",
+            "2": "",
+            "dave-berlinerring-sued": "3",
+            "dave-berlinerring-west": "4",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": ""
+        }
+    },
+    {
+        "observationAreaId": "15",
+        "daveCountingId": "339f992e-0925-4f6d-9e75-099bc520ad2c",
+        "intersectionMapping": {
+            "dave-meckauer-nordost": "1",
+            "dave-meckauer-nordwest": "2",
+            "dave-meckauer-sued": "3",
+            "dave-meckauer-ost": "4",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": ""
+        }
     }
 ]
