@@ -54,5 +54,19 @@
             "7": "",
             "8": ""
         }
+    },
+    {
+        "observationAreaId": "5",
+        "daveCountingId": "0a90fb71-8b3d-40af-96e6-46c6a1da7216",
+        "intersectionMapping": {
+            "dave-theater-nord": "1",
+            "2": "",
+            "dave-theater-sued": "3",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": ""
+        }
     }
 ]
