@@ -1,16 +1,16 @@
 [
-  {
-    "observationAreaId": "9",
-    "daveCountingId": "339f992e-0925-4f6d-9e75-099bc520ad2c",
-    "intersectionMapping": {
-        "dave-meckauer-nordost" : "1",
-        "dave-meckauer-nordwest" : "2",
-        "dave-meckauer-sued" : "3",
-        "dave-meckauer-ost" : "4",
-        "5" : "",
-        "6" : "",
-        "7" : "",
-        "8" : ""
+    {
+        "observationAreaId": "11",
+        "daveCountingId": "c1dc9e88-d7bb-44fb-bc64-0512e584ae9c",
+        "intersectionMapping": {
+            "1": "",
+            "dave-rothenfelder-west": "4",
+            "dave-rothenfelder-sued": "3",
+            "dave-rothenfelder-ost": "2",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": ""
+        }
     }
-  }
 ]
