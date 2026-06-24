@@ -21,18 +21,6 @@ When deploying DAVe to a Kubernetes cluster the following components are install
 
 By default the three components with user interface (Frontend, SelfService, AdminPortal) will be reachable under seperated subdomains. Based on the hostname provided in env file (see [env section](#using-helmfile)) the subdomains are added to base domain.
 
-## Component Breakdown
-The DAVe application consists of multiple components. Each component has its own Helm chart. The main components are:
-
-| Component        | Repository / URI                                           | Description                  | Docker image | Helm Chart |
-| -----------------| -----------------------------------------------------------| -----------------------------| -------------|------------|
-| DAVe Backend     | https://github.com/starwit/dave-backend                    | Data Storage & Business Logic| [Link](https://hub.docker.com/r/starwitorg/dave-backend) | [Link](https://hub.docker.com/r/starwitorg/dave-backend-chart) |
-| DAVe Frontend    | https://github.com/starwit/dave-frontend                   | Analytics Frontend           | [Link](https://hub.docker.com/r/starwitorg/dave-frontend) | [Link](https://hub.docker.com/r/starwitorg/dave-frontend-chart) |
-| DAVe Admin Portal | https://github.com/starwit/dave-admin-portal              | Administration Frontend      | [Link](https://hub.docker.com/r/starwitorg/dave-adminportal) | [Link](https://hub.docker.com/r/starwitorg/dave-admin-portal-chart) |
-| DAVe Self Service Portal | https://github.com/starwit/dave-selfservice-portal | Self-Service for data upload | [Link](https://hub.docker.com/r/starwitorg/dave-selfservice) | [Link](https://hub.docker.com/r/starwitorg/dave-selfservice-chart) |
-| DAVe Adapter     | https://github.com/starwit/dave-adapter                    | Connects to data platforms   | [Link](https://hub.docker.com/r/starwitorg/dave-adapter) | [Link](https://hub.docker.com/r/starwitorg/dave-adapter-chart) |
-
-
 ## Using Helmfile
 The following values are necessary to deploy DAVe.
 
