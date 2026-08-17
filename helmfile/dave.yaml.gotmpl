@@ -124,6 +124,45 @@ environments:
           password: {{ requiredEnv "ANALYTICS_USERNAME" }}
         adapterMapping: "mapping-prod.json"
 
+  carmel:
+    values:
+      - namespace: dave
+        hostname: {{ requiredEnv "HOSTNAME" }}
+        tls: true
+        profiles: prod
+        component_versions:
+          landing_page: 1.0.3
+          backend: 5.3.1
+          frontend: 5.3.1
+          adminportal: 5.3.1
+          selfservice: 5.3.0
+          adapter: 5.2.1
+        components:
+          landing_page: false
+          dave_backend: true
+          dave_database: true
+          dave_frontend: true
+          dave_adminportal: true
+          dave_selfservice: true
+          dave_adapter: false
+        auth:
+          enabled: true
+          keycloak_host: auth-ng.carmel.starwit-infra.de
+          keycloak_namespace: auth
+          realmname: {{ requiredEnv "REALM_NAME" }}
+          clientId: dave
+          clientSecret: {{ requiredEnv "CLIENT_SECRET" }}
+          api_client_id: {{ requiredEnv "API_CLIENT_ID" }}
+          api_client_secret: {{ requiredEnv "API_CLIENT_SECRET" }}
+        dave:
+          dave_db_password: {{ requiredEnv "DAVE_DB_PW" }}
+          github_token: {{ requiredEnv "GITHUB_TOKEN" }}
+        analytics:
+          url: jdbc:postgresql://timescaledb-chart-timescaledb:5432/analytics
+          username: {{ requiredEnv "ANALYTICS_PASSWORD" }}
+          password: {{ requiredEnv "ANALYTICS_USERNAME" }}
+        adapterMapping: "mapping-carmel.json"
+
 ---
 releases:
   - name: config-data

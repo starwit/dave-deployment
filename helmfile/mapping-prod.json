@@ -82,5 +82,19 @@
             "7": "",
             "8": ""
         }
+    },
+    {
+        "observationAreaId": "17",
+        "daveCountingId": "4ddd8b2e-b404-4a28-a18b-bcbcc5667615",
+        "intersectionMapping": {
+            "hafenstrassenord": "1",
+            "hafenstrasseost": "2",
+            "hafenstrassesued": "3",
+            "hafenstrassewest": "4",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": ""
+        }
     }
 ]
