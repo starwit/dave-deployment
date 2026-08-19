@@ -42,9 +42,10 @@ environments:
           github_token: test
         analytics:
           url: jdbc:postgresql://wob-tsp-staging-k3s:30001/analytics
-          username: {{ requiredEnv "ANALYTICS_PASSWORD" }}
-          password: {{ requiredEnv "ANALYTICS_USERNAME" }}
+          username: {{ requiredEnv "ANALYTICS_USERNAME" }}
+          password: {{ requiredEnv "ANALYTICS_PASSWORD" }}
         adapterMapping: "mapping-prod.json"
+        landing_page_git: https://github.com/starwit/dave-landing.git
 
   staging:
     values:
@@ -81,9 +82,10 @@ environments:
           github_token: {{ requiredEnv "GITHUB_TOKEN" }}
         analytics:
           url: jdbc:postgresql://100.112.168.104:30001/analytics
-          username: {{ requiredEnv "ANALYTICS_PASSWORD" }}
-          password: {{ requiredEnv "ANALYTICS_USERNAME" }}
+          username: {{ requiredEnv "ANALYTICS_USERNAME" }}
+          password: {{ requiredEnv "ANALYTICS_PASSWORD" }}
         adapterMapping: "mapping-staging.json"
+        landing_page_git: https://github.com/starwit/dave-landing.git
 
   prod:
     values:
@@ -120,9 +122,10 @@ environments:
           github_token: {{ requiredEnv "GITHUB_TOKEN" }}
         analytics:
           url: jdbc:postgresql://10.0.1.1:30001/analytics
-          username: {{ requiredEnv "ANALYTICS_PASSWORD" }}
-          password: {{ requiredEnv "ANALYTICS_USERNAME" }}
+          username: {{ requiredEnv "ANALYTICS_USERNAME" }}
+          password: {{ requiredEnv "ANALYTICS_PASSWORD" }}
         adapterMapping: "mapping-prod.json"
+        landing_page_git: https://github.com/starwit/dave-landing.git
 
   carmel:
     values:
@@ -136,15 +139,15 @@ environments:
           frontend: 5.3.1
           adminportal: 5.3.1
           selfservice: 5.3.0
-          adapter: 5.2.1
+          adapter: 5.3.2
         components:
-          landing_page: false
+          landing_page: true
           dave_backend: true
           dave_database: true
           dave_frontend: true
           dave_adminportal: true
           dave_selfservice: true
-          dave_adapter: false
+          dave_adapter: true
         auth:
           enabled: true
           keycloak_host: auth-ng.carmel.starwit-infra.de
@@ -158,10 +161,11 @@ environments:
           dave_db_password: {{ requiredEnv "DAVE_DB_PW" }}
           github_token: {{ requiredEnv "GITHUB_TOKEN" }}
         analytics:
-          url: jdbc:postgresql://timescaledb-chart-timescaledb:5432/analytics
-          username: {{ requiredEnv "ANALYTICS_PASSWORD" }}
-          password: {{ requiredEnv "ANALYTICS_USERNAME" }}
+          url: jdbc:postgresql://timescaledb-chart-timescaledb.observatory-data.svc.cluster.local:5432/analytics
+          username: {{ requiredEnv "ANALYTICS_USERNAME" }}
+          password: {{ requiredEnv "ANALYTICS_PASSWORD" }}
         adapterMapping: "mapping-carmel.json"
+        landing_page_git: https://github.com/starwit/dave-landing-carmel.git
 
 ---
 releases:
@@ -180,7 +184,7 @@ releases:
     values:
       - image:
           tag: "{{ .Values.component_versions.landing_page }}"
-        repoUrl: https://github.com/starwit/dave-landing.git
+        repoUrl: {{ .Values.landing_page_git }}
         accessToken: {{ .Values.dave.github_token }}
         baseUrl: {{ .Values.hostname }}
         placeholder: "DOMAIN"
@@ -420,7 +424,6 @@ releases:
         app:
           dave_url: http://backend:8080/detector/save-latest-detections
           mapping:
-            file: mapping.json
             content: |
               {{ readFile .Values.adapterMapping | nindent 14 }}
           auth: 
@@ -440,8 +443,6 @@ releases:
           url: {{ .Values.analytics.url }}
           username: {{ .Values.analytics.username }}
           password: {{ .Values.analytics.password }}
-        extraEnv: |          
-        #  - name: LOGGING_LEVEL_ROOT
-        #    value: DEBUG
-
-
+        extraEnv: |
+          - name: APP_MAPPING
+            value: "file:/app/config/mapping.json"
