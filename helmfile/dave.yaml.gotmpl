@@ -11,6 +11,7 @@ environments:
     values:
       - namespace: dave
         hostname: cluster.local
+        timezone: "Europe/Berlin"
         tls: false
         profiles: local,no-security
         component_versions:
@@ -51,6 +52,7 @@ environments:
     values:
       - namespace: dave
         hostname: {{ requiredEnv "HOSTNAME" }}
+        timezone: "Europe/Berlin"
         tls: true
         profiles: prod
         component_versions:
@@ -91,6 +93,7 @@ environments:
     values:
       - namespace: dave
         hostname: {{ requiredEnv "HOSTNAME" }}
+        timezone: "Europe/Berlin"
         tls: true
         profiles: prod
         component_versions:
@@ -131,6 +134,7 @@ environments:
     values:
       - namespace: dave
         hostname: {{ requiredEnv "HOSTNAME" }}
+        timezone: "America/Indiana/Indianapolis"
         tls: true
         profiles: prod
         component_versions:
@@ -256,7 +260,7 @@ releases:
             cpu: 50m
             memory: 1512Mi
         extraEnvVars:
-          TZ: "Europe/Berlin"
+          TZ: {{ .Values.timezone }}
           SPRING_FLYWAY_LOCATIONS: classpath:db/migration, classpath:data2
           SPRING_JPA_HIBERNATE_NAMING_PHYSICAL_STRATEGY: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
           #LOGGING_LEVEL_DE_MUENCHEN_DAVE: DEBUG
@@ -444,5 +448,5 @@ releases:
           username: {{ .Values.analytics.username }}
           password: {{ .Values.analytics.password }}
         extraEnv: |
-          - name: APP_MAPPING
-            value: "file:/app/config/mapping.json"
+        #  - name: APP_MAPPING
+        #    value: "file:/app/config/mapping.json"
